@@ -1,0 +1,43 @@
+---
+interface Technology {
+  name: string;
+  icon: string;
+  proficiency: number;
+  description: string;
+}
+
+interface Props {
+  title: string;
+  technologies: Technology[];
+  icon: string;
+}
+
+const { title, technologies, icon } = Astro.props;
+---
+
+<div class="bg-tech-gray p-6 rounded-xl border border-tech-accent/40 hover:border-tech-accent">
+  <div class="flex items-center space-x-3 mb-6">
+    <i class={`${icon} text-tech-accent text-xl`}></i>
+    <h3 class="text-xl font-bold">{title}</h3>
+  </div>
+  
+  <div class="space-y-6">
+    {technologies.map(tech => (
+      <div class="group">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center space-x-3">
+            <i class={`${tech.icon} text-tech-accent group-hover:scale-125 hover:transform-rotate-360deg transition-transform duration-200`}></i>
+            <span class="font-medium">{tech.name}</span>
+          </div>
+          <div class="w-20 bg-gray-700 h-2 rounded-full overflow-hidden">
+            <div 
+              class="h-full bg-tech-accent transition-all duration-300 group-hover:opacity-80"
+              style={`width: ${tech.proficiency}%`}
+            ></div>
+          </div>
+        </div>
+        <p class="text-sm text-gray-400 hover:text-gray-100 hover:text-shadow-tech-accent">{tech.description}</p>
+      </div>
+    ))}
+  </div>
+</div>

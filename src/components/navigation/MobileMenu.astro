@@ -1,0 +1,49 @@
+---
+interface Props {
+  items: Array<{ href: string; label: string; }>;
+}
+
+const { items } = Astro.props;
+---
+
+<div class="md:hidden">
+  <button id="mobile-menu-button" aria-label="Toggle menu" class="text-gray-300 hover:text-tech-accent">
+    <i class="fas fa-bars text-xl"></i>
+  </button>
+
+  <div id="mobile-menu" class="hidden fixed inset-0 bg-tech-dark/95 backdrop-blur-lg z-50">
+    <div class="flex justify-end p-4">
+      <button id="close-menu" aria-label="Close menu" class="text-gray-300 hover:text-tech-accent">
+        <i class="fas fa-times text-xl"></i>
+      </button>
+    </div>
+    <nav class="flex flex-col items-center space-y-8 pt-16">
+      {items.map(item => (
+        <a 
+          href={item.href}
+          class="text-xl text-gray-300 hover:text-tech-accent transition-colors duration-200"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMenuButton = document.getElementById('close-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function toggleMenu(show) {
+      if (mobileMenu) {
+        mobileMenu.classList.toggle('hidden', !show);
+        document.body.style.overflow = show ? 'hidden' : 'auto';
+      }
+    }
+
+    mobileMenuButton?.addEventListener('click', () => toggleMenu(true));
+    closeMenuButton?.addEventListener('click', () => toggleMenu(false));
+  });
+</script>

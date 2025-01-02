@@ -1,0 +1,29 @@
+---
+import NavLink from './NavLink.astro';
+import MobileMenu from './MobileMenu.astro';
+import Logo from './Logo.astro';
+
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/services', label: 'Services' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<nav class="fixed top-0 w-full bg-tech-dark/90 backdrop-blur-sm z-50 border-b border-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <Logo />
+      
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        {navItems.map(item => <NavLink href={item.href}>{item.label}</NavLink>)}
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <MobileMenu items={navItems} client:load />
+    </div>
+  </div>
+</nav>
