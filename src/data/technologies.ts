@@ -20,7 +20,7 @@ export const frontendTech = [
   {
     name: 'Next.js',
     icon: 'fas fa-n',
-    proficiency: 80,
+    proficiency: 90,
     description: 'React framework for production-grade applications'
   }
 ];
@@ -41,7 +41,7 @@ export const backendTech = [
   {
     name: 'Python',
     icon: 'fab fa-python',
-    proficiency: 75,
+    proficiency: 85,
     description: 'Versatile language for backend development and automation'
   },
   {
